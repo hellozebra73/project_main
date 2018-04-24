@@ -1,4 +1,4 @@
-/* For the "inset" look only */
+
 
 
 /* Let's get this party started */
@@ -31,6 +31,10 @@
    font-family: beacon;
    src: url(../fonts/beacon.ttf);
 }
+@font-face {
+   font-family: myriad;
+   src: url(../fonts/myriad.ttf);
+}
  
 @font-face {
    font-family: ail;
@@ -39,7 +43,7 @@
 
 
 body{
-  background-image: url(../pics/background.jpg);
+ background-image: url(../pics/background.jpg);
     background-size: cover;
 	font-size:16px;
 	font-family: Helvetica;;
@@ -135,7 +139,7 @@ color: white;
 }
 
 .navbar {
-  background-color: red ;
+  background-color: yellow ;
 }
 
 
@@ -154,7 +158,7 @@ color: white;
 
  background-color: rgba(255,255,0,0);	
 	 font-family: beacon;
-	 font-size:50px;
+	 font-size:35px;
 	 color:white;
 	 
 }
@@ -166,14 +170,14 @@ color: white;
 
 .yellow-right {
 	 border-right: dotted ;
-	 border-color:rgba(214,197,60,1);
+	
 	 padding-right:7px;
 
 }
 
 
 .panel-body {
- background-color:rgba(15,40,36,0.5) ;
+ background-color: yellow1 ;
 	 color: #3f3f3f;
 }
 
@@ -203,7 +207,7 @@ color: white;
   transform: translateY(4px);
 }
 .stepb{
-	 color: red;
+	 color: yellow;
 	background-color: rgba(255,255,0,0.0);
 	border: none;
 	margin-bottom: 10px;
@@ -213,6 +217,12 @@ color: white;
 	font-family: Helvetica;
 	 font-size: 22px;
 
+}
+
+.numberCircle{
+    color:yellow;
+	 
+	
 }
 
 .button3{
@@ -227,58 +237,71 @@ color: white;
 }
 
 .stepb {
+    color: yellow;
 	
 -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;	
 	  box-shadow: 2px 5px 5px  rgba(0,0,0,0.19);
 	}
+    
 
+.stepb  .numberCircle span{
+	
+	border-color: yellow;
+	color: white;
+	
+	}
 
 .stepb:hover {
 	background-color: background-color: rgba(0,0,0,0);
 	border-color: #d1d1d1;
-	color: #ffffff;
+	color: yellow;
 	  box-shadow: 2px 5px 5px  rgba(0,0,0,0.19);
+      
 	
 	}
-	
+
+ 
+    
 .stepb:focus {
 	background-color: rgba(0,0,0,0);
 	border-color: #d1d1d1;
-	color: #ffffff;
-	box-shadow: 2px 5px 5px  rgba(255,0,0,0.19);
+	color: yellow;
+	box-shadow: 2px 5px 5px  rgba(255,255,0,0.5);
 	outline:0;
 	}
 	
 	.stepb:active {
 	background-color: white;
 	border-color: #d1d1d1;
-	color: #ffffff;
+	color: yellow;
 	 outline: none !important;
 	}
 	
 .stepb:hover   div {
-	background-color: red;
-	border-color: red;
-	color: yellow;
+	background-color: yellow;
+	border-color: yellow;
+	color: rgba(91,134,140,1);
 	
 	}	
 	.stepb:hover  .numberCircle span{
 	
-	border-color: red;
-	color: yellow;
+	border-color: yellow;
+	color: rgba(91,134,140,1);
 	
-	}	.stepb:focus  .numberCircle span{
+	}	
+    
+    .stepb:focus  .numberCircle span{
 	
-	border-color: red;
-	color: yellow;
+	border-color: yellow;
+	color: rgba(91,134,140,1);
 	
 	}	
 	
 .stepb:focus   div {
-	background-color: red;
-	border-color: red;
-	color: yellow;
+	background-color: yellow;
+	border-color: yellow;
+	color: rgba(91,134,140,1);
 	 
 	outline:0;
 	}	
@@ -315,16 +338,16 @@ color: white;
 
 
 #b1{ background:rgba(255,255,0,0.0);
-    color:red;	
+    color:yellow;	
 	visibility: visible;}
 #b4 ,#b2 ,#b3 { background:rgba(255,255,0,0.0);
-    color:red;	
+    color:yellow;	
 	}
 
 /*Numbers in circles*/
 .numberCircle {
     border-radius: 50%;
-	border-color:red;
+	border-color:yellow;
     width: 22px;
     font-size: 18px;
     border: 2px solid ;
@@ -429,15 +452,24 @@ overflow-y:auto;
 }
 .opaque37{background-color: rgba(14,40,36,0.35);
 color:white;
-border-color:red;
+border-color:none;
+	
+	
+}
+
+.opaque38{background-color:   rgba(91,134,140,0.3);
+color:white;
+border-style: none;
+ border-color:none;
 	
 	
 }
 
 .yellow{
-background-color: yellow ;
-color:	rgba(64,64,64,1);
+background-color:   rgba(91,134,140,0.3) ;
+color:	#f7f7f7;
  border-style: none;
+ border-color:none;
 }
 
 
@@ -471,7 +503,7 @@ color:	rgba(64,64,64,1);
 
 /* The Close Button */
  .close {
-    color: red;
+    color: yellow;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -548,6 +580,12 @@ background-color: rgba(69,69,69,1);
 .beacon{
 	
 	font-family: beacon;
+}
+
+.myriad{
+	
+	font-family: myriad;
+    font-size:25px;
 }
 
 

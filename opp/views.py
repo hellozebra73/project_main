@@ -20,6 +20,11 @@ from sympy import Eq, simplify, exp, cos, sin, Ne
 
 # latex2sympy
 sys.path.append('/Users/kvarela/sw/latex2sympy/')
+sys.path.append('C:\\Users\\felipe\\Desktop\\Projects and studying\\KIB Platform') 
+sys.path.append('C:\\Users\\felipe\\Desktop\\Projects and studying\\KIB Platform\\latex2sympy')
+
+
+
 from latex2sympy.process_latex import process_sympy
 
 def index(request):
