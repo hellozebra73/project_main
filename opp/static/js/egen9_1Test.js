@@ -2,13 +2,13 @@
  var modal = document.getElementById('modal-video');
 
  // Get the button that opens the modal
- var btn = document.getElementById("modal-video-button");
+ var btn_modal = document.getElementById("modal-video-button");
 
  // Get the <span> element that closes the modal
  var span = document.getElementsByClassName("close")[0];
 
  // When the user clicks on the button, open the modal 
- btn.onclick = function() {
+ btn_modal.onclick = function() {
      modal.style.display = "block";
      var m = document.querySelector("iframe"); //making the video resizable for user screen//
      var w = window.innerWidth;
@@ -58,15 +58,17 @@
      this.bel = document.getElementById(this.bname); // grabs the button from the HTML//
      this.tel = document.getElementById(this.tname); // grabs the Text from the HTML//      
  }
-
-
+ //Step controllers//
+ var nost = lui-1; //number of steps//
+ var active_step = 0; //active step//
+ var avid = 1; //active video//
  var sbut = []; // this variable will host the steps buttons and blocks//
 
- function change(it) { // make the texts appear softly//
-     toi = sbut[it];
+ function change(num) { // make the texts appear softly//
+     toi = sbut[num];
      toi.bel.onclick = function() {
-         $("#ans_" + it).fadeIn(3000);
-         avid = it;
+         $("#ans_" + num).fadeIn(3000);
+         avid = num;
      };
  }
 
@@ -112,7 +114,7 @@
      this.focu = mathField.focus(); //for putting focus on the field //
  }
 
-
+console.log(lui);
 
  function parent(class_s) {
      act_el = document.activeElement;
@@ -146,12 +148,8 @@
 
  quill_substeps(0);
 
- //Step controllers//
- var nost = 4; //number of steps//
- var active_step = 0; //active step//
- var avid = 1; //active video//
- var stpc = [false, false, false, false] //aray for the steps//
- var correct = true; //
+
+
 
 
 
@@ -171,7 +169,7 @@
 
      // !!add a conditional that checks that there is something to quill!!//
      var substeps_arr = $(ans_num).find(".ins_quill"); // we look in the step fields for objects that have class ins_quill to quill them, !all the text  quill fields must have this class!//
-     console.log(substeps_arr);
+    
      for (j = 0; j < substeps_arr.length; j++) { //quill all objects in the array//
          var sub_name = substeps_arr[j].id;
          var tyg = new quill(sub_name);
@@ -212,7 +210,7 @@
  function appear(nom) {
      var element1 = document.getElementById(nom);
      element1.setAttribute("data-toggle", "collapse"); //this is a bootstrap method//
-     element1.style.color = "red";
+    
      element1.style.visibility = "visible";
      var roo = "rotateIn 0.5s 5";
      element1.style.animation = roo;
@@ -225,10 +223,10 @@
  // This function sends the answer to the backend /
 
  function ajax_send(step_num) {
-     console.log(step_num);
+     
      var ans_ar = quill_substeps(step_num);
      var ans_send = JSON.stringify(ans_ar);
-     console.log(ans_ar);
+	 datax=false;
      $.ajax({
          type: 'POST',
          url: '/process/',
@@ -238,8 +236,10 @@
              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
          },
          success: function(datax) {
-
+			 
+			 
              check(datax);
+			 datax=false;
 
 
          }
@@ -271,7 +271,7 @@
              $(step_name).html(data[0].fields.step_name);
              $(explanation).html(data[0].fields.explanation);
              $(instruction).html(data[0].fields.instruction);
-             $(explanation).html(data[0].fields.explanation);
+            
          }
 
      })).then(function() {
@@ -306,7 +306,14 @@
      appear("b1");
  });
 
-
+$("#check-answer").click(function(){
+        ajax_send(active_step);
+		
+    });
+ 
+ 
+ 
+ 
  //This function allows to continue if the answer is rigth,it is activated in the success function of the ajax. It receives the data coming from the backend//
 
 
@@ -317,7 +324,7 @@
      if (ans == true) {
          document.getElementById("tes").innerHTML = "Riktig!!";
          //ers(active_step);                                       // calling the function that makes the correct answer appear unchangeable
-         stpc[active_step] = true;
+        
          bar('pbar'); //makes the progress bar move//
          var nom3 = "#check" + active_step; // This is for making the checkmark symbol appear if answer is right should be changed with something that just ads it//
          $(nom3).fadeIn(1000).fadeOut(1000);

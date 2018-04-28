@@ -30,11 +30,7 @@ from latex2sympy.process_latex import process_sympy
 def index(request):
 	return render(request,'index.html')
 
-def opp(request):
-	return render(request,'index.html')
 
-def testo(request):
-	return render(request,'indexTest.html') 
 
 #NOTE: Generic views is an option to call the DB form the template.
 
@@ -154,13 +150,12 @@ class TemplateProcess(View):
 	#This function is the one that loads and fills the problems is incomplete as it does not fill the number of steps and problem text yet see opp13.html#  
 	def get(self, request, *args, **kwargs):  
 
-		#CHECK : What is a???
-		a = []
 		
-		for i in range(0,self.num_steps):
-			a.insert(i,i+1)
+		#CHECK : What is a???
+		steps_a=list(range(0,self.num_steps+1))
+		exercise_title=self.problem_name_in	
 			
-		c={"num_steps":self.num_steps, "steps_a":a}
+		c={"exercise_title":exercise_title,"exercise_text":self.prob_cons.prob_in.text,"num_steps":self.num_steps, "steps_a":steps_a}
 		return render(request, 'opp13.html',c)
 
 class DataAjax(TemplateProcess):
@@ -181,20 +176,21 @@ class DataAjax(TemplateProcess):
 		s_name='Step '+str(step_number)
 		#getting the data from the steps database
 		datax=StepConstructor(s_name,self.prob_cons.prob_in).data
-
+		print("procesando el paso")
 		return HttpResponse(datax, content_type='application/json')
 
 class DataProcess(DataAjax):
 	def __init__(self):
 		DataAjax.__init__(self)
 		self.data = False
+		
 
 	#Process method. Here the student answer is processed.
 	def post(self, request, *args, **kwargs):
 		#Definition of the symbols to be used within sympy.
 		symbols = ['theta','x_1','x_2','y_2','y_1']
 		symbol_output = SymbolConstructor(symbols)
-
+		
 		#Read student answer
 		step_number = json.loads(request.POST['step_number'])
 		s_name='Step ' + str(step_number)
@@ -203,10 +199,10 @@ class DataProcess(DataAjax):
 		student_ans = CleanStudentAns(json.loads(request.POST['student_answer']))
 		#getting the data from the steps database
 		datae=StepConstructor(s_name,self.prob_cons.prob_in).step_base
-
+		
 		#creating the step_student db.
 		step_student = StudentStepCons(self.student_prob.p_student,datae)
-
+		
 		#Compare student answer with db answer.
 		for i in range(0,len(student_ans.data_st)):
 			data_est=student_ans.data_st[i]
@@ -239,10 +235,11 @@ class DataProcess(DataAjax):
 					i_temp = i + 1
 		
 			datax = json.dumps(self.data)
-
+			
 			return HttpResponse(datax, content_type='application/json');
 		else:
 			return HttpResponse("Lo estas llamando malito");
+			
 
 
 

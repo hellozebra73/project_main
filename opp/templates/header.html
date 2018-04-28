@@ -36,7 +36,7 @@
          });
       </script>
       <script type="text/javascript" src=" {% static 'MathJax/MathJax.js' %}"></script>
-      
+      <script>var lui={{num_steps}};</script>
       
    </head>
    <body;>
@@ -72,10 +72,10 @@
                <!--firstpanel-->  
                <div class="panel  trans ">
                   <div class="panel-heading ">
-                     <h3 id="ex_title" "class=" trans"><span class="yellow-bot">{% block ex_title %} {% endblock %}</span></h3>
+                     <h3 id="ex_title" "class=" trans"><span class="yellow-bot">{{exercise_title}}</span></h3>
                   </div>
                   <div class="panel-body opaque37 ">
-                     <p>  {% block exercise_text%} {% endblock %}
+                     <p>  {{exercise_text}}
                      </p>
                   </div>
                </div>
@@ -147,7 +147,7 @@
                   <button type="button" class="btn button1" id="modal-video-button">Video losning</button>
                   <form>
                   {% csrf_token %}
-                  <button type="button" class="btn button1" id="check-answer" onclick="ajax_send(active_step);" >Sjekk svar</button>
+                  <button type="button" class="btn button1" id="check-answer"  >Sjekk svar</button>
                   </form>
                   <div id="tes" class=" beacon eqin2"  ></div>
                   
@@ -177,16 +177,16 @@
       <iframe id="vid" src="" width="640" height="358" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
    </div>
    </div>
-   <footer id="footer">
-      <p>Copyright KiB, &copy; 2017</p>
-   </footer>
+   <!-- <footer id="footer"> -->
+      <!-- <p>Copyright KiB, &copy; 2017</p> -->
+   <!-- </footer> -->
   
    <!-- Bootstrap core JavaScript
       ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
   <script src="{% static 'js/egen9_1Test.js' %} "></script>
    <script src=" {% static 'js/bootstrap.min.js' %}"></script>
-   <script  src="{% static 'js/q1Test.js'  %}"></script>	
+   <script  src="{% static 'js/q1.js'  %}"></script>	
    
    
    
