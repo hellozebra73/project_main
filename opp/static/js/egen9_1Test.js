@@ -217,8 +217,11 @@ console.log(lui);
      element1.focus;
  }
 
+var opop;
 
-
+function extract(dat){
+opop=dat;
+}
 
  // This function sends the answer to the backend /
 
@@ -236,10 +239,10 @@ console.log(lui);
              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
          },
          success: function(datax) {
-			 
+			 extract(datax);
 			 
              check(datax);
-			 datax=false;
+			
 
 
          }
@@ -307,8 +310,9 @@ console.log(lui);
  });
 
 $("#check-answer").click(function(){
-        ajax_send(active_step);
-		
+        
+		ajax_send(active_step);
+		console.log(opop);
     });
  
  

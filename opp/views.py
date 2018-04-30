@@ -194,7 +194,7 @@ class DataProcess(DataAjax):
 		#Read student answer
 		step_number = json.loads(request.POST['step_number'])
 		s_name='Step ' + str(step_number)
-
+		print("\n \n entre aqui2  \n\n")
 		#reading student answer and cleaning it.
 		student_ans = CleanStudentAns(json.loads(request.POST['student_answer']))
 		#getting the data from the steps database
