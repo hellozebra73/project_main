@@ -82,6 +82,7 @@
      return MQ.StaticMath(problemSpan);
  }
 
+ //this function is for rendering editable mathquills//
  function quillin(answer) {
      var answerSpan = document.getElementById(answer);
      var answerMathField = MQ.MathField(answerSpan, {
@@ -114,22 +115,24 @@
      this.focu = mathField.focus(); //for putting focus on the field //
  }
 
-
+//This functions  returns the DOM element of the first parent of the active element with class_s we will use it to find objects that should be mathquilled//
 
  function parent(class_s) {
      act_el = document.activeElement;
-     parent_act = $(act_el).parents(class_s).get(0); //This functions just returns the DOM element of the first parent with class_s we will use it to find objects that should be mathquilled//
+     parent_act = $(act_el).parents(class_s).get(0); 
      return parent_act;
  }
 
- // this function is for creating new mathquill fields //
+ // this function is for creating new mathquill fields it takes as input the name of the parent div where it will be inserted and  //
  var create_quill = (function() {
      var counter = 1;
      var er;
-     return function() {
+     return function(parent_div,brother_p,initial="") {
 
-         var div_name = parent("div.ans_field").id; // The ID of the created element will begin with the name of the step//
-         var target_div = parent("p.eqin");
+         
+		var  div_name= (parent_div!=null) ?  parent_div: parent("div.ans_field").id;
+		var  target_div= (brother_p!=null)?  brother_p: parent("p.eqin");
+		
          var para = document.createElement("P");
          para.id = div_name + '_p_' + counter;
          para.setAttribute("class", "eqin");
@@ -138,8 +141,10 @@
          t.id = div_name + '_s_' + counter;
          t.setAttribute("class", "eqf");
          $(target_div).after(para);
-         er = new answer_quill(t.id);
+		 $(t).text(initial);
+		 er = new answer_quill(t.id);
          er.focu;
+		
          return counter += 1;
      }
 
@@ -154,12 +159,6 @@
 
 
 
- $(document).keypress(function(e, active_step) {
-     if (e.which == 13) {
-         create_quill();
-     }
-
- });
 
 
  function quill_ins_text(step_name) {
@@ -382,7 +381,33 @@ $("#check-answer").click(function(){
 
  }
 
+function hint_appear(active_step) {
+var act_step=active_step;
+var div_active="#ans_" + act_step;
+child = $(div_active).find("p.eqin").last(); 
 
+ 
+ var hint_text=String.raw`a=\frac{\MathQuillMathField{y_2}-\MathQuillMathField{y_1}}{\MathQuillMathField{x_2}-\MathQuillMathField{x_1}}`;
+
+
+ var hint_text_pass= hint_text
+ console.log(hint_text_pass);
+ create_quill(div_active,child,hint_text);
+   
+ }
+ 
+$( "#hint_button" ).click(function() {
+hint_appear(1);
+});
+
+
+ $(document).keypress(function(e, active_step) {
+     if (e.which == 13) {
+	
+         create_quill();
+     }
+
+ });
 
 
  //This fixes the size of right column, so we can do parallax//

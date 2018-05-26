@@ -138,7 +138,7 @@ class StudentStepCons:
 
 class TemplateProcess(View):
 	#TO DO: define __init__.
-	def __init__(self,topic_input='EQ-LINE',p_name_input='Problem 13'):
+	def __init__(self,topic_input='EQ-LINE',p_name_input='Oppgave 13'):
 		#This will be read from the URL.			
 		self.topic_id_in = topic_input
 		self.problem_name_in = p_name_input
@@ -156,7 +156,7 @@ class TemplateProcess(View):
 		exercise_title=self.problem_name_in	
 			
 		c={"exercise_title":exercise_title,"exercise_text":self.prob_cons.prob_in.text,"num_steps":self.num_steps, "steps_a":steps_a}
-		return render(request, 'opp13.html',c)
+		return render(request, 'header.html',c)
 
 class DataAjax(TemplateProcess):
 	def __init__(self):

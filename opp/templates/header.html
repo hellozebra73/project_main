@@ -16,7 +16,7 @@
       <link rel="stylesheet" href="{% static 'css/mathquill.css' %}"/>
       <!--Our own JS that controls all interaction-->
         
-      <script src="{% static 'js/egen9_1Test.js' %} "></script>
+      <script src="{% static 'js/egen.js' %} "></script>
       <!--Our appi that controls Vimeo videos-->
       <script src="{% static 'js/froogaloop.js' %}"></script>
       <!--Js written by us to conver latex to js-->
@@ -121,7 +121,7 @@
                   <div id="sv-felt" class="panel trans " >
                      <div  class="panel-body panel-right  opaque37">
                         <!--Answer without help	-->	 
-                        <div id="ans_0" class=" ans_field"   >
+                        <div id="ans_0" class="ans_field">
                            <p  id="ans_0_p0" class="eqin"  ><span id="ans_0_s0" class="eqf" ></span></p>
                            
                         </div>
@@ -144,11 +144,12 @@
                      </div>
                   </div>
                  	
-                  <button type="button" class="btn button1" id="modal-video-button">Video losning</button>
-                  <form>
-                  {% csrf_token %}
-                  <button type="button" class="btn button1" id="check-answer"  >Sjekk svar</button>
-                  </form>
+                  <button type="button" class="btn button1" id="modal-video-button">Video hjelp</button>
+				  <button type="button" class="btn button1" id="hint_button">Hint</button>
+                  
+                  <button type="button" class="btn button1" id="check-answer"  ><form>
+                  {% csrf_token %} </form>Sjekk svar</button>
+                 
                   <div id="tes" class=" beacon eqin2"  ></div>
                   
                   <!--sett har-->
