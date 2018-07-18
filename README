@@ -1,0 +1,25 @@
+README
+
+General notes:
+1. Django 2.0
+2. Python 3
+
+Database:
+1. Postgresql must be installed.
+
+Apps
+1. All the apps have their own models and views and are integrated in KIB.
+2. Individual views in the apps:
+    a. They have the constructor that are use to load the desired database at a time.
+    b. All the constructors return the object of the database. The object must be transform to json before it is sent to the fron-end.
+   
+   
+KIB:
+1. It is the main app.
+2. views.py : It has different class views that are integrated in teh url.py file. 
+    a. TemplateProcess: Main class that is in charge of load all the program.
+    b. DataAjaxNumeral: It reads the Numeral database using the data sent from the front end.
+    c. DataAjaxStep: It reads the Step database using the data sent from the front end.
+    d. DataProcess: It process the data, it compares the input data for each problem to check it it is equal or if there is any mistake. --- error database must be integrated.
+        * It receives the information from the database to check if the problem is going to be sent numeral by numeral and step by step or if it is going to be sent all the steps at a time. 
+    

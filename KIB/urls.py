@@ -16,14 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-
-from . import views
+from . import views, views_problem_fill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
     path('datetime/', views.current_datetime),
-    path('process_steps/',views.DataAjax.as_view(), name = 'Step_ajax'),
+
+    path('problem_fill_subject/', views_problem_fill.DataTeacherFill.as_view(), name = 'Problem fill subject'),
+    
+    path('process_numeral/',views.DataAjaxNumeral.as_view(), name = 'Step_ajax'),
+    path('process_steps/',views.DataAjaxStep.as_view(), name = 'Step_ajax'),
     path('process/',views.DataProcess.as_view(), name = 'Data process'),
     path('opp13/',views.TemplateProcess.as_view(), name = 'Main page'),
 ]
